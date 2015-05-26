@@ -17,6 +17,10 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaResourceApi;
 import org.apache.cordova.PluginResult;
 
+import java.util.ArrayList;
+import android.util.Log;
+import android.os.Parcelable;
+
 /**
  * WebIntent is a PhoneGap plugin that bridges Android intents and web
  * applications:
@@ -85,15 +89,38 @@ public class WebIntent extends CordovaPlugin {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
                     return false;
                 }
-                Intent i = ((CordovaActivity)this.cordova.getActivity()).getIntent();
+
                 String extraName = args.getString(0);
+
+                Intent i = ((CordovaActivity)this.cordova.getActivity()).getIntent();
+                // String extraName = args.getString(0);
                 if (i.hasExtra(extraName)) {
                     String r = i.getStringExtra(extraName);
+
                     if (null == r) {
-                        r = ((Uri) i.getParcelableExtra(extraName)).toString();
+                        if (i.getParcelableExtra(extraName) != null) {
+                            r = ((Uri) i.getParcelableExtra(extraName)).toString();
+                        }
                     }
 
-                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, r));
+                    JSONArray json = new JSONArray();
+
+                    if (null == r) {
+                        if (i.getParcelableArrayListExtra(extraName) != null) {
+                            ArrayList<Parcelable> ar = i.getParcelableArrayListExtra(extraName); // .toString();
+
+                            if (ar != null) {
+                                for (int k = 0; k < ar.size(); k++) {
+                                    json.put(ar.get(k).toString());
+                                }
+                            }
+                        }
+                    } else
+                    {
+                        json.put(r);
+                    }
+
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, json.toString()));
                     return true;
                 } else {
                     //return new PluginResult(PluginResult.Status.ERROR);
