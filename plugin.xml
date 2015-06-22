@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="http" />
                 <data android:host="brownbag.it" />
+                <data android:pathPattern=".*" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
