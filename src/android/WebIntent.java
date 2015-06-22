@@ -230,8 +230,8 @@ public class WebIntent extends CordovaPlugin {
         for (String key : extras.keySet()) {
             String value = extras.get(key);
             // If type is text html, the extra text must sent as HTML
-            if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {
-                i.putExtra(key, Html.fromHtml(value));
+            if (key.equals(Intent.EXTRA_TEXT)/* && type.equals("text/html")*/) {
+                i.putExtra(key, value/*Html.fromHtml(value)*/);
             } else if (key.equals(Intent.EXTRA_STREAM)) {
                 // allowes sharing of images as attachments.
                 // value in this case should be a URI of a file
