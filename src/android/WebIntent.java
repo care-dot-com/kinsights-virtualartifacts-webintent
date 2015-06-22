@@ -131,7 +131,7 @@ public class WebIntent extends CordovaPlugin {
                 if (args.length() != 0) {
                     //return new PluginResult(PluginResult.Status.INVALID_ACTION);
                     //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
-                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 'my url'));
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, String 'my url'));
                     return true;
                 }
 
