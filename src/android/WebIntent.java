@@ -105,7 +105,7 @@ public class WebIntent extends CordovaPlugin {
 
                     JSONArray json = new JSONArray();
 
-                    if (null == r) {
+                    if (null == r || r.isEmpty()) {
                         if (i.getParcelableArrayListExtra(extraName) != null) {
                             ArrayList<Parcelable> ar = i.getParcelableArrayListExtra(extraName); // .toString();
 
