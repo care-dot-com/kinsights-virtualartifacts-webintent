@@ -97,7 +97,7 @@ public class WebIntent extends CordovaPlugin {
                 if (i.hasExtra(extraName)) {
                     String r = i.getStringExtra(extraName);
 
-                    if (null == r) {
+                    if (null == r || r.isEmpty()) {
                         if (i.getParcelableExtra(extraName) != null) {
                             r = ((Uri) i.getParcelableExtra(extraName)).toString();
                         }
