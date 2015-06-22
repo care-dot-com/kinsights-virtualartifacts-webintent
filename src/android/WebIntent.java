@@ -97,7 +97,7 @@ public class WebIntent extends CordovaPlugin {
                 if (i.hasExtra(extraName)) {
                     String r = i.getStringExtra(extraName);
 
-                    if (null == r) {
+                    if (null == r || r.isEmpty()) {
                         if (i.getParcelableExtra(extraName) != null) {
                             r = ((Uri) i.getParcelableExtra(extraName)).toString();
                         }
@@ -105,7 +105,7 @@ public class WebIntent extends CordovaPlugin {
 
                     JSONArray json = new JSONArray();
 
-                    if (null == r) {
+                    if (null == r || r.isEmpty()) {
                         if (i.getParcelableArrayListExtra(extraName) != null) {
                             ArrayList<Parcelable> ar = i.getParcelableArrayListExtra(extraName); // .toString();
 
@@ -123,10 +123,9 @@ public class WebIntent extends CordovaPlugin {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, json.toString()));
                     return true;
                 } else {
-                    JSONArray json = new JSONArray();
                     //return new PluginResult(PluginResult.Status.ERROR);
-                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, json.toString()));
-                    return true;
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
+                    return false;
                 }
             } else if (action.equals("getUri")) {
                 if (args.length() != 0) {
