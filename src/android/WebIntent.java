@@ -130,9 +130,8 @@ public class WebIntent extends CordovaPlugin {
             } else if (action.equals("getUri")) {
                 if (args.length() != 0) {
                     //return new PluginResult(PluginResult.Status.INVALID_ACTION);
-                    //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
-                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, String 'my url'));
-                    return true;
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+                    return false;
                 }
 
                 Intent i = ((CordovaActivity)this.cordova.getActivity()).getIntent();
@@ -231,8 +230,8 @@ public class WebIntent extends CordovaPlugin {
         for (String key : extras.keySet()) {
             String value = extras.get(key);
             // If type is text html, the extra text must sent as HTML
-            if (key.equals(Intent.EXTRA_TEXT)/* && type.equals("text/html")*/) {
-                i.putExtra(key, "hello"/*Html.fromHtml(value)*/);
+            if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {
+                i.putExtra(key, Html.fromHtml(value));
             } else if (key.equals(Intent.EXTRA_STREAM)) {
                 // allowes sharing of images as attachments.
                 // value in this case should be a URI of a file
