@@ -124,8 +124,10 @@ public class WebIntent extends CordovaPlugin {
                     return true;
                 } else {
                     //return new PluginResult(PluginResult.Status.ERROR);
-                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
-                    return false;
+                    //callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
+                    //return false;
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, extraName));
+                    return true;
                 }
             } else if (action.equals("getUri")) {
                 if (args.length() != 0) {
