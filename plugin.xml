@@ -22,27 +22,12 @@
         <source-file src="src/android/WebIntent.java" target-dir="src/com/borismus/webintent" />
 
         <config-file target="AndroidManifest.xml" parent="/*/application/activity">
-            <!--
             <intent-filter>
-                <data android:scheme="http" />
-                <data android:host="brownbag.it" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.VIEW"></action>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:mimeType="text/*" />
-                <data android:pathPattern=".*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <action android:name="android.intent.action.SEND_MULTIPLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="image/*" />
+                <data android:host="kinsights.com" android:scheme="https"></data>
+                <data android:host="www.kinsights.com" android:scheme="https"></data>
             </intent-filter>
         </config-file>
     </platform>
